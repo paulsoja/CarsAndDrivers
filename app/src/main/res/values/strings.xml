@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PavelSoya</string>
+
+    <string name="adding_new_car_title">Adding new car</string>
 </resources>
