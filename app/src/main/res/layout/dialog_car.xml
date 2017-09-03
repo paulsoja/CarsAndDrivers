@@ -11,7 +11,8 @@
         android:text="Car name" />
 
     <EditText
-        android:id="@+id/DialogCarName"
+        android:id="@+id/etDialogCarName"
+        android:maxLines="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -23,7 +24,8 @@
         android:text="Car year" />
 
     <EditText
-        android:id="@+id/DialogCarYear"
+        android:id="@+id/etDialogCarYear"
+        android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

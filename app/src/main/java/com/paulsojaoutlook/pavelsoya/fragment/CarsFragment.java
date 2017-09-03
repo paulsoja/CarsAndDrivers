@@ -10,17 +10,20 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.paulsojaoutlook.pavelsoya.MainActivity;
 import com.paulsojaoutlook.pavelsoya.R;
 import com.paulsojaoutlook.pavelsoya.dialog.AddingNewCar;
+import com.paulsojaoutlook.pavelsoya.model.Car;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by p-sha on 02.09.2017.
  */
 
-public class CarsFragment extends Fragment implements View.OnClickListener{
+public class CarsFragment extends Fragment implements View.OnClickListener, AddingNewCar.OnCarsChangedListener{
 
     private static final String NAME = "car_name";
     private static final String YEAR = "car_year";
@@ -56,9 +59,34 @@ public class CarsFragment extends Fragment implements View.OnClickListener{
         return root;
     }
 
+    public MainActivity activity;
+
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if (getActivity() != null) {
+            activity = (MainActivity) getActivity();
+        }
+
+        addCarsFromDB();
+    }
+
     @Override
     public void onClick(View view) {
         AddingNewCar addingNewCar = new AddingNewCar();
         addingNewCar.show(getActivity().getFragmentManager(), "AddingNewCar");
+    }
+
+    public void addCarsFromDB() {
+        List<Car> list = new ArrayList<>();
+
+    }
+
+
+    @Override
+    public void onCarsChanged() {
+
     }
 }
