@@ -1,10 +1,14 @@
 package com.paulsojaoutlook.pavelsoya.adapter;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
-import com.paulsojaoutlook.pavelsoya.model.Car;
+import com.paulsojaoutlook.pavelsoya.R;
+import com.paulsojaoutlook.pavelsoya.model.CarItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,25 +19,57 @@ import java.util.List;
 
 public class CarsAdapter extends BaseAdapter {
 
-    List<Car> carList = new ArrayList<>();
+    private class ViewHolder {
+        TextView id;
+        TextView name;
+        TextView year;
+    }
+
+    LayoutInflater inflater;
+    List<CarItem> carItemList = new ArrayList<>();
+    Context context;
+
+    public CarsAdapter(Context context, List<CarItem> carItemList) {
+        this.context = context;
+        this.carItemList = carItemList;
+        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
 
     @Override
     public int getCount() {
-        return carList.size();
+        return carItemList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return carList.get(position);
+        return carItemList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return carList.get(position).getId();
+        return position;
     }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+        View v;
+        ViewHolder viewHolder;
+        if (view == null) {
+            v = inflater.inflate(R.layout.item_car, viewGroup, false);
+            viewHolder = new ViewHolder();
+            viewHolder.id = v.findViewById(R.id.txtCarId);
+            viewHolder.name = v.findViewById(R.id.txtCarName);
+            viewHolder.year = v.findViewById(R.id.txtCarYear);
+            v.setTag(viewHolder);
+        } else {
+            v = view;
+            viewHolder = (ViewHolder) v.getTag();
+        }
+
+        viewHolder.id.setText(String.valueOf(getItemId(i + 1)));
+        viewHolder.name.setText(carItemList.get(i).getName());
+        viewHolder.year.setText(String.valueOf(carItemList.get(i).getYear()));
+
+        return v;
     }
 }

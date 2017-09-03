@@ -8,15 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
-import com.paulsojaoutlook.pavelsoya.MainActivity;
 import com.paulsojaoutlook.pavelsoya.R;
+import com.paulsojaoutlook.pavelsoya.adapter.CarsAdapter;
+import com.paulsojaoutlook.pavelsoya.database.DBHandler;
+import com.paulsojaoutlook.pavelsoya.database.DBHelper;
 import com.paulsojaoutlook.pavelsoya.dialog.AddingNewCar;
-import com.paulsojaoutlook.pavelsoya.model.Car;
+import com.paulsojaoutlook.pavelsoya.model.CarItem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -25,8 +25,9 @@ import java.util.List;
 
 public class CarsFragment extends Fragment implements View.OnClickListener, AddingNewCar.OnCarsChangedListener{
 
-    private static final String NAME = "car_name";
-    private static final String YEAR = "car_year";
+    CarItem carItem;
+    CarsAdapter adapter;
+    List<CarItem> carItemList;
 
     @Nullable
     @Override
@@ -37,40 +38,17 @@ public class CarsFragment extends Fragment implements View.OnClickListener, Addi
         FloatingActionButton fab = root.findViewById(R.id.fab);
         fab.setOnClickListener(this);
 
-        ArrayList<HashMap<String, Object>> arrayList = new ArrayList<>();
-        HashMap<String, Object> hashMap;
+        carItem = new CarItem();
+        carItemList = new ArrayList<>();
 
-        hashMap = new HashMap<>();
-        hashMap.put(NAME, "Mann");
-        hashMap.put(YEAR, 2008);
-        arrayList.add(hashMap);
+        fillData();
 
-        hashMap = new HashMap<>();
-        hashMap.put(NAME, "Mercedes");
-        hashMap.put(YEAR, 2010);
-        arrayList.add(hashMap);
-
-        SimpleAdapter adapter = new SimpleAdapter(getContext(), arrayList,
-                R.layout.item_car, new String[]{NAME, YEAR},
-                new int[]{R.id.txtCarName, R.id.txtCarYear});
-
-        // присваиваем адаптер списку
+        adapter = new CarsAdapter(getContext(), carItemList);
         list.setAdapter(adapter);
+
+
+
         return root;
-    }
-
-    public MainActivity activity;
-
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        if (getActivity() != null) {
-            activity = (MainActivity) getActivity();
-        }
-
-        addCarsFromDB();
     }
 
     @Override
@@ -79,9 +57,15 @@ public class CarsFragment extends Fragment implements View.OnClickListener, Addi
         addingNewCar.show(getActivity().getFragmentManager(), "AddingNewCar");
     }
 
-    public void addCarsFromDB() {
-        List<Car> list = new ArrayList<>();
+    private void fillData() {
+        DBHelper helper = new DBHelper(getContext());
+        DBHandler handler = new DBHandler(helper);
+        carItemList = handler.getService().getAllCar();
 
+        /*for (int i=0; i<carItemList.size(); i++) {
+            carItem.setName(carItemList.get(i).getName());
+            carItem.setYear(carItemList.get(i).getYear());
+        }*/
     }
 
 
