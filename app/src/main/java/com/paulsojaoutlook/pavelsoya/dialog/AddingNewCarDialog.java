@@ -20,7 +20,7 @@ import com.paulsojaoutlook.pavelsoya.model.CarItem;
  * Created by p-sha on 02.09.2017.
  */
 
-public class AddingNewCar extends DialogFragment implements View.OnClickListener{
+public class AddingNewCarDialog extends DialogFragment implements View.OnClickListener{
 
     public interface OnCarsChangedListener {
         void onCarsChanged();
@@ -37,8 +37,8 @@ public class AddingNewCar extends DialogFragment implements View.OnClickListener
         View root = inflater.inflate(R.layout.dialog_car, container, false);
         etCarName = root.findViewById(R.id.etDialogCarName);
         etCarYear = root.findViewById(R.id.etDialogCarYear);
-        root.findViewById(R.id.DialoBtnYes).setOnClickListener(this);
-        root.findViewById(R.id.DialogBtnNo).setOnClickListener(this);
+        root.findViewById(R.id.DialogCarBtnYes).setOnClickListener(this);
+        root.findViewById(R.id.DialogCarBtnNo).setOnClickListener(this);
         return root;
     }
 
@@ -46,7 +46,7 @@ public class AddingNewCar extends DialogFragment implements View.OnClickListener
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.DialoBtnYes:
+            case R.id.DialogCarBtnYes:
                 CarItem carItem = new CarItem();
 
                 carItem.setName(etCarName.getText().toString());
@@ -55,7 +55,7 @@ public class AddingNewCar extends DialogFragment implements View.OnClickListener
                 DBHelper helper = new DBHelper(getContext());
                 DBHandler handler = new DBHandler(helper);
 
-                handler.getService().addCar(carItem);
+                handler.getCarService().addCar(carItem);
 
                 Fragment fragment = getFragmentManager().findFragmentByTag("CarsFragment");
                 if (fragment instanceof OnCarsChangedListener) {
@@ -64,7 +64,7 @@ public class AddingNewCar extends DialogFragment implements View.OnClickListener
                 }
                 dismiss();
                 break;
-            case R.id.DialogBtnNo:
+            case R.id.DialogCarBtnNo:
                 dismiss();
         }
     }

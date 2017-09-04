@@ -9,6 +9,13 @@ public class DriverItem {
     private String name;
     private int age;
 
+    public DriverItem() {}
+
+    public DriverItem(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public DriverItem(int id, String name, int age) {
         this.id = id;
         this.name = name;

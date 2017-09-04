@@ -20,11 +20,13 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         CarService.createTable(db);
+        DriverService.createTable(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS Cars");
+        db.execSQL("DROP TABLE IF EXISTS Drivers");
         onCreate(db);
     }
 }

@@ -13,7 +13,7 @@ import com.paulsojaoutlook.pavelsoya.R;
 import com.paulsojaoutlook.pavelsoya.adapter.CarsAdapter;
 import com.paulsojaoutlook.pavelsoya.database.DBHandler;
 import com.paulsojaoutlook.pavelsoya.database.DBHelper;
-import com.paulsojaoutlook.pavelsoya.dialog.AddingNewCar;
+import com.paulsojaoutlook.pavelsoya.dialog.AddingNewCarDialog;
 import com.paulsojaoutlook.pavelsoya.model.CarItem;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import java.util.List;
  * Created by p-sha on 02.09.2017.
  */
 
-public class CarsFragment extends Fragment implements View.OnClickListener, AddingNewCar.OnCarsChangedListener{
+public class CarsFragment extends Fragment implements View.OnClickListener, AddingNewCarDialog.OnCarsChangedListener{
 
     CarItem carItem;
     CarsAdapter adapter;
@@ -34,8 +34,8 @@ public class CarsFragment extends Fragment implements View.OnClickListener, Addi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View root = inflater.inflate(R.layout.fragment_cars, container, false);
-        ListView list = root.findViewById(R.id.lvCars);
-        FloatingActionButton fab = root.findViewById(R.id.fab);
+        ListView list = root.findViewById(R.id.listCars);
+        FloatingActionButton fab = root.findViewById(R.id.fabCars);
         fab.setOnClickListener(this);
 
         carItem = new CarItem();
@@ -46,26 +46,19 @@ public class CarsFragment extends Fragment implements View.OnClickListener, Addi
         adapter = new CarsAdapter(getContext(), carItemList);
         list.setAdapter(adapter);
 
-
-
         return root;
     }
 
     @Override
     public void onClick(View view) {
-        AddingNewCar addingNewCar = new AddingNewCar();
-        addingNewCar.show(getActivity().getFragmentManager(), "AddingNewCar");
+        AddingNewCarDialog addingNewCarDialog = new AddingNewCarDialog();
+        addingNewCarDialog.show(getActivity().getFragmentManager(), "AddingNewCarDialog");
     }
 
     private void fillData() {
         DBHelper helper = new DBHelper(getContext());
         DBHandler handler = new DBHandler(helper);
-        carItemList = handler.getService().getAllCar();
-
-        /*for (int i=0; i<carItemList.size(); i++) {
-            carItem.setName(carItemList.get(i).getName());
-            carItem.setYear(carItemList.get(i).getYear());
-        }*/
+        carItemList = handler.getCarService().getAllCar();
     }
 
 
