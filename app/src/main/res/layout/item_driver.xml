@@ -12,10 +12,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Car id: " />
+            android:text="Driver id: " />
 
         <TextView
-            android:id="@+id/txtCarId"
+            android:id="@+id/txtDriverId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1" />
@@ -30,13 +30,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Car name: " />
+            android:text="Driver name: " />
 
         <TextView
-            android:id="@+id/txtCarName"
+            android:id="@+id/txtDriverName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mann" />
+            android:text="Jhon Smith" />
 
     </LinearLayout>
 
@@ -48,13 +48,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Year: " />
+            android:text="Age: " />
 
         <TextView
-            android:id="@+id/txtCarYear"
+            android:id="@+id/txtDriverAge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2008" />
+            android:text="51" />
 
     </LinearLayout>
 

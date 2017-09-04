@@ -4,21 +4,21 @@ package com.paulsojaoutlook.pavelsoya.model;
  * Created by p-sha on 30.08.2017.
  */
 
-public class Car {
+public class CarItem {
 
 
     private int id;
     private String name;
     private int year;
 
-    public Car() {}
+    public CarItem() {}
 
-    public Car(String name, int year) {
+    public CarItem(String name, int year) {
         this.name = name;
         this.year = year;
     }
 
-    public Car(int id, String name, int year) {
+    public CarItem(int id, String name, int year) {
         this.id = id;
         this.name = name;
         this.year = year;

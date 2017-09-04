@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.paulsojaoutlook.pavelsoya.model.Car;
+import com.paulsojaoutlook.pavelsoya.model.CarItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class CarService implements ICarService {
 
     static void createTable(SQLiteDatabase db) {
         String sql = "CREATE TABLE Cars ("
-                + "Id INTEGER PRIMARY KEY, "
+                + "Id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "Name TEXT, "
                 + "Year INTEGER"
                 + ")";
@@ -31,35 +31,35 @@ public class CarService implements ICarService {
     }
 
     @Override
-    public void addCar(Car car) {
+    public void addCar(CarItem carItem) {
         ContentValues values = new ContentValues();
-        values.put("Name", car.getName());
-        values.put("Year", car.getYear());
+        values.put("Name", carItem.getName());
+        values.put("Year", carItem.getYear());
         db.insert("Cars", null, values);
     }
 
     @Override
-    public Car getCar(int id) {
+    public CarItem getCar(int id) {
         return null;
     }
 
     @Override
-    public List<Car> getAllCar() {
-        List<Car> carList = new ArrayList<>();
-        String selectQuery = "SELECT Id, Name, Year FROM Cars";
+    public List<CarItem> getAllCar() {
+        List<CarItem> carItemList = new ArrayList<>();
+        String selectQuery = "SELECT * FROM Cars";
 
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         while (cursor.moveToNext()) {
-            Car car = new Car();
-            car.setId(Integer.parseInt(cursor.getString(0)));
-            car.setName(cursor.getString(1));
-            car.setYear(Integer.parseInt(cursor.getString(2)));
-            carList.add(car);
+            CarItem carItem = new CarItem();
+            carItem.setId(Integer.parseInt(cursor.getString(0)));
+            carItem.setName(cursor.getString(1));
+            carItem.setYear(Integer.parseInt(cursor.getString(2)));
+            carItemList.add(carItem);
         }
         cursor.close();
 
-        return carList;
+        return carItemList;
     }
 
     @Override
@@ -68,12 +68,12 @@ public class CarService implements ICarService {
     }
 
     @Override
-    public int updateCar(Car car) {
+    public int updateCar(CarItem carItem) {
         return 0;
     }
 
     @Override
-    public void deleteCar(Car car) {
+    public void deleteCar(CarItem carItem) {
 
     }
 }

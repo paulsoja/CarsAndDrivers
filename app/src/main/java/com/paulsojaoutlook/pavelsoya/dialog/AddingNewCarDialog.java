@@ -14,13 +14,13 @@ import android.widget.EditText;
 import com.paulsojaoutlook.pavelsoya.R;
 import com.paulsojaoutlook.pavelsoya.database.DBHandler;
 import com.paulsojaoutlook.pavelsoya.database.DBHelper;
-import com.paulsojaoutlook.pavelsoya.model.Car;
+import com.paulsojaoutlook.pavelsoya.model.CarItem;
 
 /**
  * Created by p-sha on 02.09.2017.
  */
 
-public class AddingNewCar extends DialogFragment implements View.OnClickListener{
+public class AddingNewCarDialog extends DialogFragment implements View.OnClickListener{
 
     public interface OnCarsChangedListener {
         void onCarsChanged();
@@ -37,8 +37,8 @@ public class AddingNewCar extends DialogFragment implements View.OnClickListener
         View root = inflater.inflate(R.layout.dialog_car, container, false);
         etCarName = root.findViewById(R.id.etDialogCarName);
         etCarYear = root.findViewById(R.id.etDialogCarYear);
-        root.findViewById(R.id.DialoBtnYes).setOnClickListener(this);
-        root.findViewById(R.id.DialogBtnNo).setOnClickListener(this);
+        root.findViewById(R.id.DialogCarBtnYes).setOnClickListener(this);
+        root.findViewById(R.id.DialogCarBtnNo).setOnClickListener(this);
         return root;
     }
 
@@ -46,16 +46,16 @@ public class AddingNewCar extends DialogFragment implements View.OnClickListener
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.DialoBtnYes:
-                Car car = new Car();
+            case R.id.DialogCarBtnYes:
+                CarItem carItem = new CarItem();
 
-                car.setName(etCarName.getText().toString());
-                car.setYear(Integer.parseInt(etCarYear.getText().toString()));
+                carItem.setName(etCarName.getText().toString());
+                carItem.setYear(Integer.parseInt(etCarYear.getText().toString()));
 
                 DBHelper helper = new DBHelper(getContext());
                 DBHandler handler = new DBHandler(helper);
 
-                handler.getService().addCar(car);
+                handler.getCarService().addCar(carItem);
 
                 Fragment fragment = getFragmentManager().findFragmentByTag("CarsFragment");
                 if (fragment instanceof OnCarsChangedListener) {
@@ -64,7 +64,7 @@ public class AddingNewCar extends DialogFragment implements View.OnClickListener
                 }
                 dismiss();
                 break;
-            case R.id.DialogBtnNo:
+            case R.id.DialogCarBtnNo:
                 dismiss();
         }
     }

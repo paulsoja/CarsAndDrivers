@@ -7,14 +7,20 @@ package com.paulsojaoutlook.pavelsoya.database;
 public class DBHandler {
 
     private final DBHelper helper;
-    private final CarService service;
+    private final CarService carService;
+    private final DriverService driverService;
 
     public DBHandler(DBHelper helper) {
         this.helper = helper;
-        service = new CarService(helper.getWritableDatabase());
+        carService = new CarService(helper.getWritableDatabase());
+        driverService = new DriverService(helper.getWritableDatabase());
     }
 
-    public CarService getService() {
-        return service;
+    public CarService getCarService() {
+        return carService;
+    }
+
+    public DriverService getDriverService() {
+        return driverService;
     }
 }

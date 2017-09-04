@@ -8,80 +8,57 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
-import com.paulsojaoutlook.pavelsoya.MainActivity;
 import com.paulsojaoutlook.pavelsoya.R;
-import com.paulsojaoutlook.pavelsoya.dialog.AddingNewCar;
-import com.paulsojaoutlook.pavelsoya.model.Car;
+import com.paulsojaoutlook.pavelsoya.adapter.CarsAdapter;
+import com.paulsojaoutlook.pavelsoya.database.DBHandler;
+import com.paulsojaoutlook.pavelsoya.database.DBHelper;
+import com.paulsojaoutlook.pavelsoya.dialog.AddingNewCarDialog;
+import com.paulsojaoutlook.pavelsoya.model.CarItem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
  * Created by p-sha on 02.09.2017.
  */
 
-public class CarsFragment extends Fragment implements View.OnClickListener, AddingNewCar.OnCarsChangedListener{
+public class CarsFragment extends Fragment implements View.OnClickListener, AddingNewCarDialog.OnCarsChangedListener{
 
-    private static final String NAME = "car_name";
-    private static final String YEAR = "car_year";
+    CarItem carItem;
+    CarsAdapter adapter;
+    List<CarItem> carItemList;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View root = inflater.inflate(R.layout.fragment_cars, container, false);
-        ListView list = root.findViewById(R.id.lvCars);
-        FloatingActionButton fab = root.findViewById(R.id.fab);
+        ListView list = root.findViewById(R.id.listCars);
+        FloatingActionButton fab = root.findViewById(R.id.fabCars);
         fab.setOnClickListener(this);
 
-        ArrayList<HashMap<String, Object>> arrayList = new ArrayList<>();
-        HashMap<String, Object> hashMap;
+        carItem = new CarItem();
+        carItemList = new ArrayList<>();
 
-        hashMap = new HashMap<>();
-        hashMap.put(NAME, "Mann");
-        hashMap.put(YEAR, 2008);
-        arrayList.add(hashMap);
+        fillData();
 
-        hashMap = new HashMap<>();
-        hashMap.put(NAME, "Mercedes");
-        hashMap.put(YEAR, 2010);
-        arrayList.add(hashMap);
-
-        SimpleAdapter adapter = new SimpleAdapter(getContext(), arrayList,
-                R.layout.item_car, new String[]{NAME, YEAR},
-                new int[]{R.id.txtCarName, R.id.txtCarYear});
-
-        // присваиваем адаптер списку
+        adapter = new CarsAdapter(getContext(), carItemList);
         list.setAdapter(adapter);
+
         return root;
-    }
-
-    public MainActivity activity;
-
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        if (getActivity() != null) {
-            activity = (MainActivity) getActivity();
-        }
-
-        addCarsFromDB();
     }
 
     @Override
     public void onClick(View view) {
-        AddingNewCar addingNewCar = new AddingNewCar();
-        addingNewCar.show(getActivity().getFragmentManager(), "AddingNewCar");
+        AddingNewCarDialog addingNewCarDialog = new AddingNewCarDialog();
+        addingNewCarDialog.show(getActivity().getFragmentManager(), "AddingNewCarDialog");
     }
 
-    public void addCarsFromDB() {
-        List<Car> list = new ArrayList<>();
-
+    private void fillData() {
+        DBHelper helper = new DBHelper(getContext());
+        DBHandler handler = new DBHandler(helper);
+        carItemList = handler.getCarService().getAllCar();
     }
 
 

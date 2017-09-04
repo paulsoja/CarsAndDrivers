@@ -1,6 +1,6 @@
 package com.paulsojaoutlook.pavelsoya.database;
 
-import com.paulsojaoutlook.pavelsoya.model.Car;
+import com.paulsojaoutlook.pavelsoya.model.CarItem;
 
 import java.util.List;
 
@@ -10,11 +10,11 @@ import java.util.List;
 
 public interface ICarService {
 
-    void addCar(Car car);
-    Car getCar(int id);
-    List<Car> getAllCar();
+    void addCar(CarItem carItem);
+    CarItem getCar(int id);
+    List<CarItem> getAllCar();
     int getCarCount();
-    int updateCar(Car car);
-    void deleteCar(Car car);
+    int updateCar(CarItem carItem);
+    void deleteCar(CarItem carItem);
 
 }
