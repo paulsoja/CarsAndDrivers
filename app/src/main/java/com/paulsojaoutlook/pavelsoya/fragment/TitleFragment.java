@@ -18,7 +18,8 @@ import com.paulsojaoutlook.pavelsoya.R;
 
 public class TitleFragment extends Fragment implements View.OnClickListener {
 
-    FragmentManager fragmentManager;
+    public static final String TAG = "tag";
+
     DriversFragment driversFragment;
     CarsFragment carsFragment;
 
@@ -34,8 +35,6 @@ public class TitleFragment extends Fragment implements View.OnClickListener {
         cars.setOnClickListener(this);
         drivers.setOnClickListener(this);
 
-        fragmentManager = getFragmentManager();
-
         return root;
     }
 
@@ -44,16 +43,16 @@ public class TitleFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.Btn_Cars:
                 carsFragment = new CarsFragment();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.Frame_Content, carsFragment)
-                        .addToBackStack(null)
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.Frame_Content, carsFragment, TAG)
+                        .addToBackStack(TAG)
                         .commit();
 
                 break;
             case R.id.Btn_Drivers:
                 driversFragment = new DriversFragment();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.Frame_Content, driversFragment)
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.Frame_Content, driversFragment, "driversFragment")
                         .addToBackStack(null)
                         .commit();
                 break;

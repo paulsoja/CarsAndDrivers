@@ -10,7 +10,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
 
+    //Версия базы данных. При изменении схемы увеличить на единицу
     private static final int DATABASE_VERSION = 1;
+    //Имя базы данных
     private static final String DATABASE_NAME = "manager";
 
     public DBHelper(Context context) {
@@ -19,10 +21,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //создание таблицы Cars
         CarService.createTable(db);
+        //Создание таблицы Drivers
         DriverService.createTable(db);
     }
 
+    //Вызывается при обновлении схемы базы данных
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS Cars");

@@ -60,13 +60,15 @@ public class CarsAdapter extends BaseAdapter {
             viewHolder.id = v.findViewById(R.id.txtCarId);
             viewHolder.name = v.findViewById(R.id.txtCarName);
             viewHolder.year = v.findViewById(R.id.txtCarYear);
+            notifyDataSetChanged();
             v.setTag(viewHolder);
         } else {
             v = view;
+            notifyDataSetChanged();
             viewHolder = (ViewHolder) v.getTag();
         }
 
-        viewHolder.id.setText(String.valueOf(getItemId(position + 1)));
+        viewHolder.id.setText(String.valueOf(getItemId(position)));
         viewHolder.name.setText(carItemList.get(position).getName());
         viewHolder.year.setText(String.valueOf(carItemList.get(position).getYear()));
 

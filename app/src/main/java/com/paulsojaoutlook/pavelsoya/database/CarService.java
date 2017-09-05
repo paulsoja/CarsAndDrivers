@@ -23,7 +23,7 @@ public class CarService implements ICarService {
 
     static void createTable(SQLiteDatabase db) {
         String sql = "CREATE TABLE Cars ("
-                + "Id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "Id INTEGER PRIMARY KEY, "
                 + "Name TEXT, "
                 + "Year INTEGER"
                 + ")";
@@ -33,6 +33,7 @@ public class CarService implements ICarService {
     @Override
     public void addCar(CarItem carItem) {
         ContentValues values = new ContentValues();
+
         values.put("Name", carItem.getName());
         values.put("Year", carItem.getYear());
         db.insert("Cars", null, values);
@@ -68,12 +69,18 @@ public class CarService implements ICarService {
     }
 
     @Override
-    public int updateCar(CarItem carItem) {
-        return 0;
+    public int updateCar(int id) {
+        ContentValues values = new ContentValues();
+        CarItem carItem = new CarItem();
+
+        values.put("Name", "vova");
+        values.put("Year", 2112);
+        return db.update("Cars", values, "Id = " + id, null);
     }
 
     @Override
-    public void deleteCar(CarItem carItem) {
-
+    public void deleteCar(int id) {
+        db.delete("Cars", "Id = " + id, null);
+        db.close();
     }
 }

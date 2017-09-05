@@ -22,6 +22,8 @@ import com.paulsojaoutlook.pavelsoya.model.CarItem;
 
 public class AddingNewCarDialog extends DialogFragment implements View.OnClickListener{
 
+    public static final String TAG_ADDING_NEW_CAR = "TAG_ADDING_NEW_CAR";
+
     public interface OnCarsChangedListener {
         void onCarsChanged();
     }
@@ -33,7 +35,6 @@ public class AddingNewCarDialog extends DialogFragment implements View.OnClickLi
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        getDialog().setTitle(R.string.adding_new_car_title);
         View root = inflater.inflate(R.layout.dialog_car, container, false);
         etCarName = root.findViewById(R.id.etDialogCarName);
         etCarYear = root.findViewById(R.id.etDialogCarYear);
@@ -57,7 +58,9 @@ public class AddingNewCarDialog extends DialogFragment implements View.OnClickLi
 
                 handler.getCarService().addCar(carItem);
 
-                Fragment fragment = getFragmentManager().findFragmentByTag("CarsFragment");
+                Bundle bundle = getArguments();
+                String listenerTag = bundle.getString(TAG_ADDING_NEW_CAR);
+                Fragment fragment = getFragmentManager().findFragmentByTag(listenerTag);
                 if (fragment instanceof OnCarsChangedListener) {
                     OnCarsChangedListener listener = (OnCarsChangedListener) fragment;
                     listener.onCarsChanged();
@@ -65,6 +68,7 @@ public class AddingNewCarDialog extends DialogFragment implements View.OnClickLi
                 dismiss();
                 break;
             case R.id.DialogCarBtnNo:
+                //close dialog without any changes
                 dismiss();
         }
     }
