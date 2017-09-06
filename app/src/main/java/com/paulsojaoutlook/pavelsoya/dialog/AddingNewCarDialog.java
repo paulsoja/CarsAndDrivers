@@ -1,11 +1,13 @@
 package com.paulsojaoutlook.pavelsoya.dialog;
 
 import android.annotation.TargetApi;
-import android.app.DialogFragment;
-import android.app.Fragment;
+
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,7 @@ import android.widget.EditText;
 import com.paulsojaoutlook.pavelsoya.R;
 import com.paulsojaoutlook.pavelsoya.database.DBHandler;
 import com.paulsojaoutlook.pavelsoya.database.DBHelper;
+import com.paulsojaoutlook.pavelsoya.fragment.CarsFragment;
 import com.paulsojaoutlook.pavelsoya.model.CarItem;
 
 /**
@@ -59,7 +62,7 @@ public class AddingNewCarDialog extends DialogFragment implements View.OnClickLi
                 handler.getCarService().addCar(carItem);
 
                 Bundle bundle = getArguments();
-                String listenerTag = bundle.getString(TAG_ADDING_NEW_CAR);
+                String listenerTag = bundle.getString(CarsFragment.TAG_CARS_FRAGMENT);
                 Fragment fragment = getFragmentManager().findFragmentByTag(listenerTag);
                 if (fragment instanceof OnCarsChangedListener) {
                     OnCarsChangedListener listener = (OnCarsChangedListener) fragment;

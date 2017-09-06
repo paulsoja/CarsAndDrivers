@@ -25,7 +25,7 @@ import java.util.List;
  */
 
 public class CarsFragment extends Fragment implements View.OnClickListener,
-        AddingNewCarDialog.OnCarsChangedListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener{
+        AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, AddingNewCarDialog.OnCarsChangedListener{
 
     public static final String TAG_CARS_FRAGMENT = "TAG_CARS_FRAGMENT";
 
@@ -33,12 +33,7 @@ public class CarsFragment extends Fragment implements View.OnClickListener,
     CarsAdapter adapter;
     List<CarItem> carItemList;
     ListView list;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
+    AddingNewCarDialog addingNewCarDialog;
 
     @Nullable
     @Override
@@ -51,6 +46,7 @@ public class CarsFragment extends Fragment implements View.OnClickListener,
 
         carItem = new CarItem();
         carItemList = new ArrayList<>();
+        addingNewCarDialog = new AddingNewCarDialog();
 
         fillData();
         list.setOnItemClickListener(this);
@@ -59,17 +55,22 @@ public class CarsFragment extends Fragment implements View.OnClickListener,
         adapter = new CarsAdapter(getContext(), carItemList);
         list.setAdapter(adapter);
 
+        View myHeader = inflater.inflate(R.layout.listview_header, container, false);
+        list.addHeaderView(myHeader, null, false);
+
+        setRetainInstance(true);
+
         return root;
     }
 
     @Override
     public void onClick(View view) {
         //open dialog for new data from user
-        AddingNewCarDialog addingNewCarDialog = new AddingNewCarDialog();
+
         Bundle bundle = new Bundle();
-        bundle.putString(AddingNewCarDialog.TAG_ADDING_NEW_CAR, getTag());
+        bundle.putString(TAG_CARS_FRAGMENT, getTag());
         addingNewCarDialog.setArguments(bundle);
-        addingNewCarDialog.show(getActivity().getFragmentManager(), TAG_CARS_FRAGMENT);
+        addingNewCarDialog.show(getFragmentManager(), AddingNewCarDialog.TAG_ADDING_NEW_CAR);
     }
 
     //fill the list from the base
@@ -78,7 +79,6 @@ public class CarsFragment extends Fragment implements View.OnClickListener,
         DBHandler handler = new DBHandler(helper);
         carItemList = handler.getCarService().getAllCar();
     }
-
 
     @Override
     public void onCarsChanged() {

@@ -14,9 +14,11 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TitleFragment titleFragment = new TitleFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.Frame_Content, titleFragment, TAG_ACTIVITY)
-                .addToBackStack(TAG_ACTIVITY)
-                .commit();
+        if (savedInstanceState == null) {
+            TitleFragment titleFragment = new TitleFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.Frame_Content, titleFragment, TAG_ACTIVITY)
+                    .commit();
+        }
     }
 }

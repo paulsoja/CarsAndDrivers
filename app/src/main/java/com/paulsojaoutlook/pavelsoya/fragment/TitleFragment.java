@@ -3,7 +3,6 @@ package com.paulsojaoutlook.pavelsoya.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,6 @@ import com.paulsojaoutlook.pavelsoya.R;
  */
 
 public class TitleFragment extends Fragment implements View.OnClickListener {
-
-    public static final String TAG = "tag";
 
     DriversFragment driversFragment;
     CarsFragment carsFragment;
@@ -44,8 +41,8 @@ public class TitleFragment extends Fragment implements View.OnClickListener {
             case R.id.Btn_Cars:
                 carsFragment = new CarsFragment();
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.Frame_Content, carsFragment, TAG)
-                        .addToBackStack(TAG)
+                        .replace(R.id.Frame_Content, carsFragment, CarsFragment.TAG_CARS_FRAGMENT)
+                        .addToBackStack(CarsFragment.TAG_CARS_FRAGMENT)
                         .commit();
 
                 break;
