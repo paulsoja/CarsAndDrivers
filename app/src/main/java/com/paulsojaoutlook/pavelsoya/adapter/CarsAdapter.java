@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.paulsojaoutlook.pavelsoya.R;
+import com.paulsojaoutlook.pavelsoya.database.DBHandler;
+import com.paulsojaoutlook.pavelsoya.database.DBHelper;
 import com.paulsojaoutlook.pavelsoya.model.CarItem;
 
 import java.util.ArrayList;
@@ -33,6 +35,15 @@ public class CarsAdapter extends BaseAdapter {
         this.context = context;
         this.carItemList = carItemList;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    //обновление данных после изменений
+    public void reload(){
+        //carItemList.clear();
+        DBHelper helper = new DBHelper(context);
+        DBHandler handler = new DBHandler(helper);
+        carItemList = handler.getCarService().getAllCar();
+        notifyDataSetChanged();
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.paulsojaoutlook.pavelsoya.database;
 
+import com.paulsojaoutlook.pavelsoya.model.CarItem;
+
 /**
  * Created by p-sha on 03.09.2017.
  */

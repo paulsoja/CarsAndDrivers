@@ -16,6 +16,7 @@ import java.util.List;
 public class CarService implements ICarService {
 
     private final SQLiteDatabase db;
+    private CarItem carItem;
 
     public CarService(SQLiteDatabase db) {
         this.db = db;
@@ -69,12 +70,10 @@ public class CarService implements ICarService {
     }
 
     @Override
-    public int updateCar(int id) {
+    public int updateCar(int id, CarItem carItem) {
         ContentValues values = new ContentValues();
-        CarItem carItem = new CarItem();
-
-        values.put("Name", "vova");
-        values.put("Year", 2112);
+        values.put("Name", carItem.getName());
+        values.put("Year", carItem.getYear());
         return db.update("Cars", values, "Id = " + id, null);
     }
 

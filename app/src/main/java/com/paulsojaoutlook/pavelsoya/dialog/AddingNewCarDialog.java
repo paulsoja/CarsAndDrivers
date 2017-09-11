@@ -2,7 +2,6 @@ package com.paulsojaoutlook.pavelsoya.dialog;
 
 import android.annotation.TargetApi;
 
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -31,6 +30,10 @@ public class AddingNewCarDialog extends DialogFragment implements View.OnClickLi
         void onCarsChanged();
     }
 
+    public interface OnCarEditListener {
+        void onCarEdit();
+    }
+
     private EditText etCarName;
     private EditText etCarYear;
 
@@ -52,21 +55,25 @@ public class AddingNewCarDialog extends DialogFragment implements View.OnClickLi
         switch (view.getId()) {
             case R.id.DialogCarBtnYes:
                 CarItem carItem = new CarItem();
-
                 carItem.setName(etCarName.getText().toString());
                 carItem.setYear(Integer.parseInt(etCarYear.getText().toString()));
-
                 DBHelper helper = new DBHelper(getContext());
                 DBHandler handler = new DBHandler(helper);
-
                 handler.getCarService().addCar(carItem);
 
                 Bundle bundle = getArguments();
                 String listenerTag = bundle.getString(CarsFragment.TAG_CARS_FRAGMENT);
+                String listenerCarEditTag = bundle.getString(CarsFragment.TAG_CAR_EDIT);
                 Fragment fragment = getFragmentManager().findFragmentByTag(listenerTag);
+                Fragment fragmentEdit = getFragmentManager().findFragmentByTag(listenerCarEditTag);
                 if (fragment instanceof OnCarsChangedListener) {
                     OnCarsChangedListener listener = (OnCarsChangedListener) fragment;
                     listener.onCarsChanged();
+                }
+
+                if (fragmentEdit instanceof OnCarEditListener) {
+                    OnCarEditListener listener = (OnCarEditListener) fragment;
+                    listener.onCarEdit();
                 }
                 dismiss();
                 break;
