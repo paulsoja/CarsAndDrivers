@@ -1,6 +1,51 @@
 <resources>
     <string name="app_name">PavelSoya</string>
 
-    <string name="adding_new_car_title">Adding new car</string>
-    <string name="adding_new_driver_title">Adding new driver</string>
+    <string name="AddingNewCarTitle">Adding new car</string>
+    <string name="AddingNewDriverTitle">Adding new driver</string>
+
+    <string name="Toast_itemIsDeleted">item is deleted</string>
+    <string name="Toast_itemIsEdited">item is edited</string>
+    <string name="Toast_etIsEmpty">enter the data</string>
+
+    <string name="txtTitleCarName">Car name</string>
+    <string name="txtTitleCarYear">Car year</string>
+
+    <string name="txtTitleDriverName">Driver name</string>
+    <string name="txtTitleDriverYear">Driver year</string>
+
+    <string name="btn_DialogCar_Yes">YES</string>
+    <string name="btn_DialogCar_No">NO</string>
+    <string name="txtTitle_DialogCar_Delete">Delete?</string>
+    <string name="btn_DialogDeleteCar_Yes">YES</string>
+    <string name="btn_DialogDeleteCar_No">NO</string>
+    <string name="txtTitle_DialogEditCar_CarName">Car name</string>
+    <string name="txtTitle_DialogEditCar_CarYear">Car year</string>
+    <string name="btn_DialogEditCar_Yes">YES</string>
+    <string name="btn_DialogEditCar_No">NO</string>
+
+    <string name="btn_DialogDriver_Yes">YES</string>
+    <string name="btn_DialogDriver_No">NO</string>
+    <string name="txtTitle_DialogDriver_Delete">Delete?</string>
+    <string name="btn_DialogDeleteDriver_Yes">YES</string>
+    <string name="btn_DialogDeleteDriver_No">NO</string>
+    <string name="txtTitle_DialogEditDriver_DriverName">Driver name</string>
+    <string name="txtTitle_DialogEditDriver_DriverAge">Driver age</string>
+    <string name="btn_DialogEditDriver_Yes">YES</string>
+    <string name="btn_DialogEditDriver_No">NO</string>
+
+    <string name="btnText_TitleFragment_Cars">Cars</string>
+    <string name="btnText_TitleFragment_Drivers">Drivers</string>
+    <string name="txt_TitleFragment_Hint">Press any image</string>
+
+    <string name="txtTitle_itemCar_CarNumber">Number:</string>
+    <string name="txtTitle_itemCar_CarName">Car name:</string>
+    <string name="txtTitle_itemCar_CarYear">Car year:</string>
+
+    <string name="txtTitle_itemDriver_DriverNumber">Number:</string>
+    <string name="txtTitle_itemDriver_DriverName">Driver name:</string>
+    <string name="txtTitle_itemDriver_DriverAge">Driver age:</string>
+
+    <string name="txt_ListHeader_TapHint">tap on item for edit</string>
+    <string name="txt_ListHeader_LongTapHint">long tap on item for delete</string>
 </resources>

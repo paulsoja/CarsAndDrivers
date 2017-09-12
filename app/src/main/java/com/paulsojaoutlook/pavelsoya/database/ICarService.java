@@ -14,7 +14,7 @@ public interface ICarService {
     CarItem getCar(int id);
     List<CarItem> getAllCar();
     int getCarCount();
-    int updateCar(CarItem carItem);
-    void deleteCar(CarItem carItem);
+    int updateCar(int id, CarItem carItem);
+    void deleteCar(int id);
 
 }

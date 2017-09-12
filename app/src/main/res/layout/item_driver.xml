@@ -12,13 +12,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Driver id: " />
+            android:text="@string/txtTitle_itemDriver_DriverNumber" />
 
         <TextView
             android:id="@+id/txtDriverId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1" />
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="11" />
 
     </LinearLayout>
 
@@ -30,13 +32,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Driver name: " />
+            android:text="@string/txtTitle_itemDriver_DriverName" />
 
         <TextView
             android:id="@+id/txtDriverName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jhon Smith" />
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="Petro Petrenko" />
 
     </LinearLayout>
 
@@ -48,10 +52,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Age: " />
+            android:text="@string/txtTitle_itemDriver_DriverAge" />
 
         <TextView
             android:id="@+id/txtDriverAge"
+            android:layout_weight="1"
+            android:gravity="right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="51" />

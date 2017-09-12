@@ -6,12 +6,10 @@ package com.paulsojaoutlook.pavelsoya.database;
 
 public class DBHandler {
 
-    private final DBHelper helper;
     private final CarService carService;
     private final DriverService driverService;
 
     public DBHandler(DBHelper helper) {
-        this.helper = helper;
         carService = new CarService(helper.getWritableDatabase());
         driverService = new DriverService(helper.getWritableDatabase());
     }

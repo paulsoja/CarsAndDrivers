@@ -8,10 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Car name" />
+        android:text="@string/txtTitle_DialogEditCar_CarName" />
 
     <EditText
-        android:id="@+id/etDialogCarName"
+        android:id="@+id/etDialogEditCarName"
         android:maxLines="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -21,10 +21,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Car year" />
+        android:text="@string/txtTitle_DialogEditCar_CarYear" />
 
     <EditText
-        android:id="@+id/etDialogCarYear"
+        android:id="@+id/etDialogEditCarYear"
         android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -36,16 +36,16 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/DialogCarBtnYes"
+            android:id="@+id/DialogEditCarBtnYes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="YES" />
+            android:text="@string/btn_DialogEditCar_Yes" />
 
         <Button
-            android:id="@+id/DialogCarBtnNo"
+            android:id="@+id/DialogEditCarBtnNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NO" />
+            android:text="@string/btn_DialogEditCar_No" />
     </LinearLayout>
 
 </LinearLayout>
