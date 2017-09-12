@@ -27,7 +27,7 @@ public class DeleteCarDialog extends DialogFragment implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View root = inflater.inflate(R.layout.dialog_delete, container, false);
+        View root = inflater.inflate(R.layout.dialog_delete_car, container, false);
         root.findViewById(R.id.DialogDeleteBtnYes).setOnClickListener(this);
         root.findViewById(R.id.DialogDeleteBtnNo).setOnClickListener(this);
         return root;

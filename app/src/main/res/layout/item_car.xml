@@ -12,12 +12,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Car id: " />
+            android:text="@string/txtTitle_itemCar_CarNumber" />
 
         <TextView
             android:id="@+id/txtCarId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
             android:text="1" />
 
     </LinearLayout>
@@ -30,12 +32,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Car name: " />
+            android:text="@string/txtTitle_itemCar_CarName" />
 
         <TextView
             android:id="@+id/txtCarName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
             android:text="Mann" />
 
     </LinearLayout>
@@ -48,12 +52,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Year: " />
+            android:text="@string/txtTitle_itemCar_CarYear" />
 
         <TextView
             android:id="@+id/txtCarYear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
             android:text="2008" />
 
     </LinearLayout>

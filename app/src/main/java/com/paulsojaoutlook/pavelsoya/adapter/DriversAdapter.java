@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.paulsojaoutlook.pavelsoya.R;
+import com.paulsojaoutlook.pavelsoya.database.DBHandler;
+import com.paulsojaoutlook.pavelsoya.database.DBHelper;
 import com.paulsojaoutlook.pavelsoya.model.DriverItem;
 
 import java.util.ArrayList;
@@ -25,14 +27,22 @@ public class DriversAdapter extends BaseAdapter {
         TextView age;
     }
 
-    LayoutInflater inflater;
-    List<DriverItem> driverItemList = new ArrayList<>();
-    Context context;
+    private LayoutInflater inflater;
+    private List<DriverItem> driverItemList = new ArrayList<>();
+    private Context context;
 
     public DriversAdapter(Context context, List<DriverItem> driverItemList) {
         this.context = context;
         this.driverItemList = driverItemList;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    //обновление данных после изменений
+    public void reload() {
+        DBHelper helper = new DBHelper(context);
+        DBHandler handler = new DBHandler(helper);
+        driverItemList = handler.getDriverService().getAllDriver();
+        notifyDataSetChanged();
     }
 
     @Override
@@ -69,7 +79,6 @@ public class DriversAdapter extends BaseAdapter {
         viewHolder.id.setText(String.valueOf(getItemId(position + 1)));
         viewHolder.name.setText(driverItemList.get(position).getName());
         viewHolder.age.setText(String.valueOf(driverItemList.get(position).getAge()));
-
         return v;
     }
 }

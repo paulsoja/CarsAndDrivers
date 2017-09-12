@@ -23,7 +23,7 @@ public class DriverService implements IDriverService {
 
     static void createTable(SQLiteDatabase db) {
         String sql = "CREATE TABLE Drivers ("
-                + "Id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "Id INTEGER PRIMARY KEY, "
                 + "Name TEXT, "
                 + "Age INTEGER"
                 + ")";
@@ -68,12 +68,16 @@ public class DriverService implements IDriverService {
     }
 
     @Override
-    public int updateDriver(DriverItem driverItem) {
-        return 0;
+    public int updateDriver(int id, DriverItem driverItem) {
+        ContentValues values = new ContentValues();
+        values.put("Name", driverItem.getName());
+        values.put("Age", driverItem.getAge());
+        return db.update("Drivers", values, "Id = " + id, null);
     }
 
     @Override
-    public void deleteDriver(DriverItem driverItem) {
-
+    public void deleteDriver(int id) {
+        db.delete("Drivers", "Id = " + id, null);
+        db.close();
     }
 }

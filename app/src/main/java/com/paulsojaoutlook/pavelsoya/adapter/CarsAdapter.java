@@ -27,9 +27,9 @@ public class CarsAdapter extends BaseAdapter {
         TextView year;
     }
 
-    LayoutInflater inflater;
-    List<CarItem> carItemList = new ArrayList<>();
-    Context context;
+    private LayoutInflater inflater;
+    private List<CarItem> carItemList = new ArrayList<>();
+    private Context context;
 
     public CarsAdapter(Context context, List<CarItem> carItemList) {
         this.context = context;
@@ -38,8 +38,7 @@ public class CarsAdapter extends BaseAdapter {
     }
 
     //обновление данных после изменений
-    public void reload(){
-        //carItemList.clear();
+    public void reload() {
         DBHelper helper = new DBHelper(context);
         DBHandler handler = new DBHandler(helper);
         carItemList = handler.getCarService().getAllCar();
@@ -71,18 +70,15 @@ public class CarsAdapter extends BaseAdapter {
             viewHolder.id = v.findViewById(R.id.txtCarId);
             viewHolder.name = v.findViewById(R.id.txtCarName);
             viewHolder.year = v.findViewById(R.id.txtCarYear);
-            notifyDataSetChanged();
             v.setTag(viewHolder);
         } else {
             v = view;
-            notifyDataSetChanged();
             viewHolder = (ViewHolder) v.getTag();
         }
 
         viewHolder.id.setText(String.valueOf(getItemId(position)));
         viewHolder.name.setText(carItemList.get(position).getName());
         viewHolder.year.setText(String.valueOf(carItemList.get(position).getYear()));
-
         return v;
     }
 }

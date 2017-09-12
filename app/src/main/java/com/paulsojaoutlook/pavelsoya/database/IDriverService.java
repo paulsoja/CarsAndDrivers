@@ -14,6 +14,6 @@ public interface IDriverService {
     DriverItem getDriver(int id);
     List<DriverItem> getAllDriver();
     int getDriverCount();
-    int updateDriver(DriverItem driverItem);
-    void deleteDriver(DriverItem driverItem);
+    int updateDriver(int id, DriverItem driverItem);
+    void deleteDriver(int id);
 }

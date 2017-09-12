@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/ic_directions_car_black_48dp"
-        android:text="Cars"/>
+        android:text="@string/btnText_TitleFragment_Cars"/>
 
     <View
         android:layout_margin="16dp"
@@ -23,12 +23,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/ic_accessibility_black_48dp"
-        android:text="Drivers"/>
+        android:text="@string/btnText_TitleFragment_Drivers"/>
 
     <TextView
         android:layout_margin="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Press any image"/>
+        android:text="@string/txt_TitleFragment_Hint"/>
 
 </LinearLayout>
